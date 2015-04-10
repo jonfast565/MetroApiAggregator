@@ -1,6 +1,9 @@
 #ifndef UTILITY_H
 #define	UTILITY_H
 
+//std cpp includes
+#include <stdexcept>
+
 // MongoDB includes
 #include <bson.h>
 
