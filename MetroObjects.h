@@ -120,6 +120,7 @@ public:
         this->AddressState = response["Address"]["State"].asString();
         this->AddressZipCode = response["Address"]["Zip"].asString();
         this->AddressStreet = response["Address"]["Street"].asString();
+        this->Name = response["Name"].asString();
     }
 
     std::shared_ptr<BSONObject> to_bson_object() {
@@ -127,6 +128,7 @@ public:
         doc->append_oid_default();
         doc->append_string("ObjectType", std::string("METRO_RAIL_STATION"));
         doc->append_string("StationCode", this->StationCode);
+        doc->append_string("Name", this->Name);
         doc->append_string("LineCode1", this->LineCode1);
         doc->append_string("LineCode2", this->LineCode2);
         doc->append_string("LineCode3", this->LineCode3);
