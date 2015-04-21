@@ -168,9 +168,15 @@ std::shared_ptr<Schedule> make_predictions_schedule() {
                         std::shared_ptr<MetroDataParser < MetroRailPrediction >> (
                         new MetroDataParser<MetroRailPrediction>(logger));
                 database->create_get_collection("RailPredictions");
+                database->clear_collection();
                 std::shared_ptr<std::vector<std::shared_ptr < BSONObject>>>
                         predictions_list = predictions->get_bson_records();
                 database->insert_records(predictions_list);
+                
+                // create historical predictions
+                database->create_get_collection("RailPredictionsHistorical");
+                database->insert_records(predictions_list);
+                
                 predictions_list->clear();
                 predictions_list.reset();
                 predictions.reset();
